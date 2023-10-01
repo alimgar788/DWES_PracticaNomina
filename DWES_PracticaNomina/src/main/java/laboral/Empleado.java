@@ -1,9 +1,13 @@
 package laboral;
 
+import laboral.exceptions.DatosNoCorrectosException;
+import lombok.Getter;
+
 /**
  * La clase Empleado extiende de la clase Persona. Un empleado tiene también una categoria y una antigüedad laboral
  */
 
+@Getter
 public class Empleado extends Persona{
     private int categoria;
     public double anyos;
@@ -35,8 +39,8 @@ public class Empleado extends Persona{
         super(nombre, dni, sexo);
         this.categoria = categoria;
 
-        if (anyos <= 0) {
-            throw new DatosNoCorrectosException("El año debe ser un número superior a 0");
+        if (anyos < 0) {
+            throw new DatosNoCorrectosException("El anyo debe ser un numero superior a 0");
         }
         this.anyos = anyos;
     }
@@ -53,6 +57,13 @@ public class Empleado extends Persona{
         }else{
             throw new DatosNoCorrectosException("La categoría debe estar entre 1 y 10");
         }
+    }
+
+    public void setAnyos(double anyos) throws DatosNoCorrectosException{
+        if (anyos < 0) {
+            throw new DatosNoCorrectosException("El anyo debe ser un numero superior a 0");
+        }
+        this.anyos = anyos;
     }
 
     /**

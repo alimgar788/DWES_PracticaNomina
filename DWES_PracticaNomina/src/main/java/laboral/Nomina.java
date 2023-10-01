@@ -13,8 +13,39 @@ public class Nomina {
      * @param empl
      * @return
      */
-    public double sueldo(Empleado empl){
-        double salario = SUELDO_BASE[empl.getCategoria()-1] + 5000*empl.anyos;
+    public double calcularsueldoEmpleado(Empleado empl){
+        double salario = SUELDO_BASE[empl.getCategoria()-1] + 5000*empl.getAnyos();
         return salario;
     }
+
+    public double recalculaSueldoEmpleado(Empleado empl, int nuevaCategoria, double nuevoAnyo){
+        if(empl.getCategoria() != nuevaCategoria && empl.getAnyos()!= nuevoAnyo) {
+            return SUELDO_BASE[nuevaCategoria - 1] + 5000 * nuevoAnyo;
+        }else if(empl.getCategoria()!=nuevaCategoria){
+            return SUELDO_BASE[nuevaCategoria - 1] + 5000 * empl.getAnyos();
+        }else if(empl.getAnyos()!= nuevoAnyo){
+            return SUELDO_BASE[empl.getCategoria() - 1] + 5000 * nuevoAnyo;
+        }else{
+            Nomina nomina = new Nomina();
+            return nomina.calcularsueldoEmpleado(empl);
+        }
+    }
+//    public double recalcularSueldoPorCategoria(Empleado empl, int nuevaCategoria){
+//        Nomina nomina = new Nomina();
+//        double salario = nomina.calcularsueldoEmpleado(empl);
+//        if(empl.getCategoria()!= nuevaCategoria) {
+//            salario = SUELDO_BASE[nuevaCategoria - 1] + 5000 * empl.getAnyos();
+//        }
+//        return salario;
+//    }
+//
+//    public double recalcularSueldoPorAnyosTrabajados(Empleado empl, double nuevoAnyo){
+//        Nomina nomina = new Nomina();
+//        double salario = nomina.calcularsueldoEmpleado(empl);
+//        if(empl.getAnyos()!= nuevoAnyo) {
+//            salario = SUELDO_BASE[empl.getCategoria() - 1] + 5000 * nuevoAnyo;
+//        }
+//        return salario;
+//    }
+
 }

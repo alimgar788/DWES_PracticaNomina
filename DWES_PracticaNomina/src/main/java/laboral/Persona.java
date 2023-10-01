@@ -1,9 +1,11 @@
 package laboral;
 
+import lombok.Getter;
+
 /**
  * La clase Persona representa a una persona con un nombre, Dni y sexo
  */
-
+@Getter
 public class Persona {
     public String nombre, dni;
     public char sexo;
